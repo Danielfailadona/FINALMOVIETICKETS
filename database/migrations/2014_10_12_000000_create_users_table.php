@@ -25,12 +25,18 @@ return new class extends Migration
 
         // ✅ Insert default roles and user statuses
         DB::table('roles')->insertOrIgnore([
-            ['id' => 1, 'name' => 'Admin'],
-        ]);
+         ['id' => 2, 'name' => 'User'],
+       ]);
+
 
         DB::table('user_statuses')->insertOrIgnore([
             ['id' => 1, 'name' => 'Active'],
         ]);
+
+        DB::table('roles')->insertOrIgnore([
+    ['id' => 3, 'name' => 'Customer', 'created_at' => now(), 'updated_at' => now()],
+       ]);
+
 
         // ✅ Then insert the admin user
         DB::table('users')->insert([
@@ -38,7 +44,7 @@ return new class extends Migration
             'last_name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
-            'role_id' => 1,
+           'role_id' => 2,
             'user_status_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
